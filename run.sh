@@ -9,7 +9,7 @@ node=$1
 
 echo "Install Kubernetes"
 sudo sh src/master.sh
-mv src/containerd.toml /etc/containerd/config.toml
+mv src/config/containerd.toml /etc/containerd/config.toml
 systemctl daemon-reload
 
 if [ "$node" == "--master" ];then
@@ -28,7 +28,7 @@ if [ "$node" == "--master" ];then
   source <(kubectl completion bash)
 
   # Install Calico
-  kubectl apply -f src/calico.yaml
+  kubectl apply -f src/config/calico.yaml
 
 elif [ "$node" == "--worker" ];then
   echo "Init Worker node"
